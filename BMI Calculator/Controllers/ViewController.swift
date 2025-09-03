@@ -15,15 +15,30 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func heightSliderChanged(_ sender: UISlider) {
-        print(String(format: "%.2f", sender.value))
-    }
     
+    @IBOutlet weak var heightLabel: UILabel!
+    @IBOutlet weak var weightLabel: UILabel!
+    
+    @IBOutlet weak var heightSlider: UISlider!
+    @IBOutlet weak var weightSlider: UISlider!
+    
+    @IBAction func heightSliderChanged(_ sender: UISlider) {
+        let heightValue = String(format: "%.2f", sender.value)
+        heightLabel.text = "\(heightValue)m"
+    }
     
     
     @IBAction func weightSliderChanged(_ sender: UISlider) {
-        print(Int(sender.value))
+        let weightValue = String(format: "%.0f", sender.value)
+        weightLabel.text = "\(weightValue)Kg"
     }
     
+    @IBAction func calculatePressed(_ sender: UIButton) {
+        let height = heightSlider.value
+        let weight = weightSlider.value
+        
+        let BMI = weight / pow(height, 2)
+        print("\(BMI)")
+    }
 }
 
